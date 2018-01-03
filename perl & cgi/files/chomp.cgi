@@ -1,0 +1,29 @@
+#!/usr/local/bin/perl
+
+require "subparseform.lib";
+&Parse_Form;
+print "Content-type: text/html\n\n";
+
+
+$comments = $formdata{'comments'};
+print "<P>Before cleaning the data, the comments are <PRE>--$comments--</PRE>";
+while ($comments =~ /\s$/) {
+	chop ($comments);
+}
+print "<P>After cleaning the data, the comments are <PRE>--$comments--</PRE>";
+	
+
+open (LOG, ">>../../logs/logfile.txt") || &ErrorMessage;
+print LOG "$comments\n";
+close (LOG);
+
+print "<P>You commented thusly: <BLOCKQUOTE><P><I>$comments</I></BLOCKQUOTE>\n";
+print "<HR>Would you like to see all the messages? <A HREF=\"http://www.cookwood.com/cgi-bin/lcastro/readfromlog.cgi\">Yes</A>";
+
+sub ErrorMessage {
+	print "Content-type: text/html\n\n";
+	print "The server can't open the file. It either doesn't exist or the permissions are wrong. \n";
+	exit;
+}
+
+

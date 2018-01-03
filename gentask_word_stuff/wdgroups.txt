@@ -1,0 +1,72 @@
+ANGEL		NURSE		INFANT		WAGON
+NOVEL		DOLLAR		BENCH		INSECT
+JACKET		PEPPER		GARAGE		CHAIN
+REGION		PIANO		BASKET		OCEAN
+adult		winter		heater		fence
+cake		handle		skirt		grain
+lagoon		juice		leader		dress
+muscle		engine		model		elbow
+						
+CHAIN		INFANT		NOVEL		ADULT
+BENCH		GRAIN		GARAGE		REGION
+PEPPER		NURSE		JUICE		FENCE
+ELBOW		ANGEL		SKIRT		LAGOON
+leader		winter		jacket		dress
+piano		handle		ocean		cake
+dollar		insect		model		basket
+heater		muscle		wagon		engine
+
+ENGINE		WAGON		BENCH		NOVEL
+LAGOON		JACKET		ELBOW		CAKE
+MODEL		MUSCLE		PIANO		PEPPER
+ANGEL		CHAIN		BASKET		FENCE
+juice		handle		grain		nurse
+skirt		garage		region		adult
+insect		heater		ocean		dollar
+winter		infant		leader		dress
+
+INFANT		NOVEL		PEPPER		HANDLE
+DRESS		SKIRT		LAGOON		ELBOW
+WAGON		DOLLAR		BENCH		GARAGE
+OCEAN		ENGINE		NURSE		MUSCLE
+heater		basket		juice		angel
+region		grain		winter		leader
+jacket		piano		model		chain
+cake		fence		insect		adult
+
+REGION		CAKE		ADULT		WAGON
+PEPPER		JACKET		FENCE		ELBOW
+NOVEL		LAGOON		DRESS		ENGINE
+NURSE		WINTER		MODEL		DOLLAR
+handle		chain		bench		infant
+garage		piano		juice		leader
+skirt		ocean		basket		insect
+heater		grain		muscle		angel
+
+INSECT		JACKET		CHAIN		REGION
+NOVEL		SKIRT		GARAGE		LEADER
+WINTER		FENCE		DRESS		GRAIN
+PIANO		ANGEL		JUICE		ELBOW
+cake		muscle		handle		adult
+nurse		pepper		wagon		engine
+ocean		model		lagoon		heater
+dollar		bench		infant		basket
+
+LEADER		REGION		MODEL		HEATER
+GARAGE		FENCE		MUSCLE		ELBOW
+PEPPER		NURSE		INFANT		DRESS
+BENCH		BASKET		WAGON		ENGINE
+jacket		adult		lagoon		juice
+handle		dollar		angel		cake
+skirt		ocean		novel		piano
+chain		grain		insect		winter
+
+INSECT		REGION		FENCE		HANDLE
+NOVEL		FENCE		DRESS		ELBOW
+WINTER		NURSE		ADULT		GARAGE
+PIANO		BASKET		MODEL		MUSCLE
+cake		adult		bench		angel
+ocean		dollar		juice		leader
+nurse		ocean		basket		adult
+dollar		grain		muscle		chain
+

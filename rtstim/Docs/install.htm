@@ -1,0 +1,212 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.72 [en] (X11; U; Linux 2.2.16-ert i686) [Netscape]">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EF" vlink="#51188E" alink="#FF0000">
+
+<center>
+<h1>
+<font color="#FF0000"><font size=+4>Installation</font></font></h1></center>
+
+<p>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<blockquote><font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;
+This section gives the details of how to install RTStim. The installation
+consists of three parts: (1) Hardware installation/setup; (2) RTAI installation;
+and (3) RTStim installation. If you have any questions please subscribe
+to the RTStim mailing list and post your questions there. Please select
+the Lilo boot loader in your installation of RedHat9.</font></font>
+<p><font color="#FF0000"><font size=+2>1. Hardware Installation and Setup</font></font><a NAME="hw_install"></a>
+<br>&nbsp;
+<blockquote><font size=+1><font color="#FF0000"><b>a.</b> </font>Make certain
+that you do not install the RME card, PCI graphics card or the DIO-24 card&nbsp;
+in PCI slot 1 of your motherboard. Slot 1 is the one closest to the AGP
+slot.</font>
+<p><font size=+1><font color="#FF0000"><b>b.</b>&nbsp;</font> In the BIOS
+setup make the follow selections:</font>
+<ul>
+<li>
+<font size=+1>Onboard parallel port should use port=0x378 , IRQ =7&nbsp;
+and mode=SPP</font></li>
+
+<li>
+<font size=+1>The AGP card should be set as the primary graphics card.</font></li>
+
+<li>
+<font size=+1>Disable power management</font></li>
+
+<li>
+<font size=+1>Disable sound card in BIOS if you have a sound card on the
+motherboard chipset</font></li>
+</ul>
+<font size=+1><b><font color="#FF0000">c.</font><font color="#FF6666">&nbsp;</font></b>
+In the "/etc/lilo.conf" file (<a href="lilo.conf">see example lilo.conf
+file</a>) add the line</font>
+<blockquote><font size=+1>vga=xxx</font></blockquote>
+<font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where xxx is a value selected
+from the folowing table indicating the screen resolution and bit-depth
+to be used:</font></blockquote>
+
+<br>&nbsp;
+<center><table BORDER COLS=3 WIDTH="50%" NOSAVE >
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE></td>
+
+<td NOSAVE>&nbsp;800x600 resolution</td>
+
+<td>1024x768 resolution</td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE>8-bit depth</td>
+
+<td>771</td>
+
+<td>773</td>
+</tr>
+
+<tr>
+<td>
+<center>&nbsp;15-bit depth</center>
+</td>
+
+<td>
+<center>787</center>
+</td>
+
+<td>
+<center>790</center>
+</td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE>16-bit depth</td>
+
+<td NOSAVE>788</td>
+
+<td>791</td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE>24-bit depth</td>
+
+<td>789</td>
+
+<td>792</td>
+</tr>
+</table></center>
+
+<blockquote>&nbsp;
+<br><font size=+1><b><font color="#FF0000">d.</font></b> The /etc/X11/xf86config
+file should be edited to contain no reference to the ATI Radeon AGP card.
+Here is an example <a href="XF86Config">XF86Config</a> file. Alternatively,
+if you have not installed RedHat9 yet on your system you may do the RedHat9
+install with the ATI Radeon graphics card removed from the machine. When
+you reinsert the card after the RedHat9 install you can then reboot and
+when Kudzu detects the new ATI Radeon AGP card simply select "ignore".
+This will create a XF86Config file without reference to the ATI Radeon
+AGP card.</font>
+<p><font size=+1>Note: For some PCI graphics cards it is neccessary to
+insert the following lines in the "Device" section of the XF86Config file:</font>
+<blockquote><font size=+1>BusID&nbsp; "PCI:xx:yy:zz"</font>
+<br><font size=+1>Option "nodri"</font></blockquote>
+<font size=+1>An example of this can be seen in the example XF86Config
+file where xx, yy and zz are the bus, device and function numbers for your
+PCI graphics card. The bus, device, and function numbers can be obtained
+by doing a "cat /proc/pci" and looking for the reference to your particular
+PCI graphics card.</font></blockquote>
+<font color="#FF0000"><font size=+2>2. RTAI Installation</font></font><a NAME="rtai_install"></a>
+<br>&nbsp;
+<blockquote><font size=+1><b><font color="#FF0000">a. </font></b><font color="#330000">Although
+RTAI has its own installation instructions in its README.INSTALL file,
+we have provided a somewhat simplified installation guide tailored to RTStim's
+specific needs. Please follow our instructions located <a href="rtai_install.htm">here</a>.</font></font>
+<p><font size=+1><b><font color="#FF6666">b.</font></b> After RTAI has
+been succesfully installed and you have confirmed that the new RTAI enabled
+kernel will boot succesfully then add the following lines just before the
+end of the&nbsp; /etc/rc.d/rc.local&nbsp; file</font>
+<blockquote><font size=+1># This will start the RTAI realtime modules</font>
+<br><font size=+1>echo Starting RTAI</font>
+<br><font size=+1>insmod /usr/src/rtai/modules/rtai.o</font>
+<br><font size=+1>insmod /usr/src/rtai/modules/rtai_fifos.o</font>
+<br><font size=+1>insmod /usr/src/rtai/modules/rtai_sched.o</font>
+<br><font size=+1>insmod /usr/src/rtai/modules/rtai_shm.o</font></blockquote>
+<font size=+1>This will cause an automatic loading of the RTAI modules
+when the machine is booted. <font color="#660000">Note: /usr/src/rtai should
+link to the rtai source directory.</font></font></blockquote>
+<font color="#FF0000"><font size=+2>3. RTStim Installation</font></font><a NAME="rtstim_install"></a></blockquote>
+
+<blockquote>
+<blockquote><font color="#660000"><font size=+1>After successful completion
+of steps 1 and 2 above you are then ready to install RTStim. This is a
+relativley simple process.</font></font>
+<p><font size=+1><font color="#330000">&nbsp;</font><font color="#FF0000"><b>a.</b>
+Preparation</font></font>
+<p><font color="#330000"><font size=+1>We suggest that you create an account
+with user name "rtstim" and home directory /home/rtstim, then follow the
+below instructions to unpack and compile the package, set related environment
+variables and run examples. This step is not a must, but it will make running
+examples faster and easier.</font></font>
+<br>&nbsp;
+<blockquote><font size=+1><b><font color="#FF0000">i.</font></b><font color="#330000">
+Create an account: user name = rtstim, home directory = /home/rtstim, shell
+= /bin/bash, and login with user rtstim.</font></font>
+<p><font size=+1><b><font color="#FF0000">ii.</font></b><font color="#330000">Download
+the RTStim 2.0 from the RTStim website at&nbsp; http://www.unm.edu/~sheltraw/rtstim&nbsp;
+and unpack the file rtstim_release_2.0.tgz at /home/rtstim by doing:</font></font>
+<blockquote><font color="#330000"><font size=+1>tar zxvf rtstim_release_2.0.tgz</font></font></blockquote>
+<font color="#330000"><font size=+1>then you will get a directory named
+rtstim_release_2.0/ which contains the RTStim source code and examples.</font></font></blockquote>
+</blockquote>
+
+<blockquote><font color="#FF0000"><font size=+1><b>b.</b>&nbsp; Compiling
+RTStim</font></font>
+<p><font color="#660000"><font size=+1>You must have root permission in
+order to compile RTStim, or else the kernel module cannot be loaded. However,
+root permisssion is not necessary to run RTStim.</font></font>
+<br>&nbsp;
+<blockquote><font size=+1><b><font color="#FF0000">i.</font></b><font color="#660000">
+Change to&nbsp; root user by using the "su" command and then create the
+following link (if it does not exist):</font></font>
+<blockquote><font color="#660000"><font size=+1>ln -s&nbsp; /usr/src/rtai-24.1.11&nbsp;
+/usr/src/rtai</font></font></blockquote>
+<font size=+1><b><font color="#FF0000">ii.</font></b><font color="#660000">
+Run "make" in top directory of rtstim_release_2.0/&nbsp; by doing:</font></font>
+<blockquote><font color="#660000"><font size=+1>cd /home/stim/rtstim_release_2.0</font></font>
+<br><font color="#660000"><font size=+1>make</font></font></blockquote>
+</blockquote>
+<font color="#FF0000"><font size=+1><b>c. </b>Set Environment Variables</font></font>
+<p><font color="#330000"><font size=+1>This is the final step in the installation
+of RTStim.&nbsp; Add following lines into file $HOME/.bash_profile</font></font>
+<blockquote><font color="#330000"><font size=+1>STIM_RELEASE_PATH = /home/rtstim/rtstim_release_2.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+PATH=$PATH:$STIM_RELEASE_PATH/build_sequence:$STIM_RELEASE_PATH/stim:$STIM_RELEASE_PATH/RTCentralApp
+export STIM_RELEASE_PATH PATH</font></font></blockquote>
+<font color="#330000"><font size=+1>Here is a sample <a href="bash_pro">.bash_profile</a>
+file. In order to implement theses changes, the user needs to do "source
+.bash_profile".</font></font>
+<p><font color="#FF0000"><font size=+1><b>d.</b> Using the RTStim log tool&nbsp;</font></font><a NAME="logtool"></a><font color="#FF0000"><font size=+1></font></font>
+<p><font color="#330000"><font size=+1>If you are having problems with
+the RTStim installation or use you can send us or the mailing list this
+log file to help diagnose the problem.</font></font>
+<br><font color="#330000"><font size=+1>The log file tool is in the /utils
+diectory of the RTStim distribution and can be used by doing:</font></font>
+<blockquote><font color="#330000"><font size=+1>./rtsim_log [logfile_name]</font></font></blockquote>
+<font color="#330000"><font size=+1>where logfile_name specifies a name
+to give the file. The default name is rtstim.log if you do not specify
+logfile_name.</font></font>
+<br><font color="#330000"><font size=+1></font></font>&nbsp;
+<p><font color="#FF0000"><font size=+1><b>e.</b> Optimizing Resource Availabilty</font></font>
+<p><font size=+1>To make more resources available you may want to run the
+system in run-level 2. This can be achieved by editing&nbsp; /etc/inittab
+to read id:2:initdefault. Also remove unused start up scripts from /etc/rc.d/rc2.d
+by replacing the S in the script name with an s. This way you can easily
+restore the start-up script by changing back to an S if needed.&nbsp; Both
+of these suggestions will free system memory so that the GUI will not need
+to access swap-space as much.</font></blockquote>
+</blockquote>
+
+</body>
+</html>

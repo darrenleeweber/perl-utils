@@ -1,0 +1,188 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.72 [en] (X11; U; Linux 2.2.16-ert i686) [Netscape]">
+   <base target="_self">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EF" vlink="#51188E" alink="#FF0000" stylesrc="navigator.htm">
+
+<center>
+<h1>
+<font color="#FF0000"><font size=+4>Using RTStim</font></font><a NAME="using"></a></h1></center>
+
+<blockquote><font size=+1>There are two modes in which to use RTStim: <i>Static
+mode</i> and <i>Dynamic mode</i>. Most of you will probably want to use
+static mode but you should be aware of the capabilities of each mode .&nbsp;
+Static mode can be used when the experimenter wants to create a fixed sequence
+of events. Static mode requires no programming by the user and a new Sequnce
+Builder GUI is avavilable in RTStim 2.0. Dynamic mode is used when the
+sequence of events is not fixed. The use of dynamic mode requires programming
+by the user. Please have a look at the <a href="api.htm">RTStim API</a>
+if you would like to use dynamic mode.</font>
+<p><font size=+1>The following is a list of the type of events available
+in RTStim:</font>
+<p><font size=+1>Visual Stimuli</font>
+<ul>
+<li>
+<font size=+1>Displays .bmp images</font></li>
+
+<li>
+<font size=+1>Image resolution of 800x600 or 1024x768</font></li>
+
+<li>
+<font size=+1>Image depth 8-bit, 16-bit or 24-bit</font></li>
+
+<li>
+<font size=+1>BitBlitting (the horizontal and vertical dimensions must
+be a multiple of 4)</font></li>
+
+<li>
+<font size=+1>Synchronization with the vertical retrace</font></li>
+
+<li>
+<font size=+1>Short movies</font></li>
+</ul>
+<font color="#330000"><font size=+1>Auditory Stimuli</font></font>
+<ul>
+<li>
+<font color="#330000"><font size=+1>Playback of .wav files (uses 44.1kHz
+sampling rate)</font></font></li>
+
+<li>
+<font color="#330000"><font size=+1>24-bit depth audio</font></font></li>
+</ul>
+<font color="#330000"><font size=+1>Input/Output</font></font>
+<ul>
+<li>
+<font color="#330000"><font size=+1>Hardware interrupt synchronization
+with external hardware using the motherboard parallel port.</font></font></li>
+
+<li>
+<font color="#330000"><font size=+1>Three 8-bit ports for IO on the PCI
+DIO-24 card Response-pad interface is hardware interrupt driven on the
+PCI DIO-24 card.</font></font></li>
+</ul>
+
+<h3>
+<font color="#FF0000">1. Running the Examples</font><a NAME="examples"></a></h3>
+
+<blockquote><font size=+1><font color="#660000">To run the static mode
+examples run "RTCentralApp" then i</font><font color="#330000">n the GUI
+enter:</font></font>
+<blockquote><font color="#330000"><font size=+1>Stimulus Directory: /home/rtstim/rtstim_release_2.0/paradigms/xxxx/</font></font>
+<br><font color="#330000"><font size=+1>User Application: /home/rtstim/rtstim_release_2.0/stim/stim</font></font></blockquote>
+<font color="#330000"><font size=+1>where xxxx is a <i>paradigm directory</i>&nbsp;
+(see <a href="stim_use.htm#building">Building a Sequence</a>) choosen from
+the list below. Press the "GO" button to start the sequence of scheduled
+events. I</font></font>f the application is not found you should verify
+that the PATH environment variable was set correctly during the installation.
+This can be checked by doing "which RTCentralApp". If the PATH is set correctly,
+the absolute path of the RTCentralApp program will be displayed.
+<blockquote>
+<li>
+<font color="#330000"><font size=+1>bitblt/: display bitblt images on a
+specified background images with different positions.</font></font></li>
+
+<li>
+<font color="#330000"><font size=+1>demo/: display some full screen images.</font></font></li>
+
+<li>
+<font color="#330000"><font size=+1>movie/: display bounch of full screen
+images with given frame rate, just like playing a movie.</font></font></li>
+
+<li>
+<font color="#330000"><font size=+1>sync/: example of sync event.</font></font></li>
+
+<li>
+<font color="#330000"><font size=+1>resp/: example of respond event.</font></font></li>
+
+<li>
+<font color="#330000"><font size=+1>stereo/: example of playing sound event.</font></font></li>
+</blockquote>
+
+<h3>
+<font color="#000000">If you are having any difficulties getting RTStim
+to run please send us the RTStim log file (see <a href="install.htm#logtool">installation</a>).</font></h3>
+</blockquote>
+
+<h3>
+<font color="#FF0000">2. Building a Sequence</font><a NAME="building"></a></h3>
+
+<ul><font color="#330000"><font size=+1>To build a static mode sequence
+there are to methods: (1) Use the GUI sequence builder or (2) Manually.
+Regardless of the method used to build a sequence, the first step in building
+a working sequence is the creation of a <i>paradigm directory</i>. You
+can name the paradigm directory whatever you like but each paradigm directory
+must contain the following three files:</font></font>
+<br>&nbsp;
+<li>
+<font color="#330000"><font size=+1>sequence.txt:&nbsp; the list of scheduled
+events, the event times and event properties (built by Sequence Builder
+GUI or manually).</font></font></li>
+
+<li>
+<font color="#330000"><font size=+1>image_list.txt:&nbsp; a list of absolute
+paths to the .bmp files used by the sequence.</font></font></li>
+
+<li>
+<font color="#330000"><font size=+1>sound_list.txt:&nbsp; a list of absolute
+paths to the .wav files used by the sequence.</font></font></li>
+
+<br>&nbsp;
+<p>&nbsp;
+<p><font color="#330000"><font size=+1>The sequence.txt file uses a syntax
+of "label=xxx" where <i>label</i> may designate the event&nbsp; type or
+some specific parameter associated with that event and xxx designates the
+value given to that label.&nbsp; For a complete table of events and associated
+parameter labels follow this <a href="label.htm">link</a>. Please have
+a look at the sequence.txt files for each of the examples above. This will
+give you a quick introduction to the proper structure of a sequence file.
+The Sequence Builder GUI is convenient in that it gives you choices for
+parameter labels associated with a choosen event type.</font></font></ul>
+
+<h3>
+<font color="#FF0000">3. Running a Sequence</font><a NAME="running"></a></h3>
+</blockquote>
+
+<blockquote>
+<blockquote><font size=+1><font color="#660000">To run your paradigm's
+sequence file start the "RTCentralApp" then i</font><font color="#330000">n
+the appropriate text GUIs enter:</font></font>
+<blockquote><font color="#330000"><font size=+1>Stimulus Directory: /home/rtstim/rtstim_release_2.0/paradigms/xxxx/</font></font>
+<br><font color="#330000"><font size=+1>User Application: /home/rtstim/rtstim_release_2.0/stim/stim</font></font></blockquote>
+<font color="#330000"><font size=+1>where xxxx is the <i>paradigm directory</i>&nbsp;
+for your paradigm. Press the "GO" button to start the sequence of scheduled
+events. Whe using static mode the <i>User Application </i>is always that
+given above . When using dynamic mode the User Application will be the
+user-space program you have created using the RTStim API, and the paradigm
+directory will contain the image_list.txt and sound_list.txt files but
+not the sequence.txt file.</font></font></blockquote>
+
+<h3>
+<font color="#FF0000">4. RTStim Utilities</font><a NAME="utils"></a></h3>
+
+<blockquote>
+<li>
+<font size=+1>sim_sync is a user-space program (located in the Utils/ directory)
+that will allow you to simulate a synchronization with external hardware.</font></li>
+
+<li>
+<font size=+1>sim_keypad is a user-space program (located in the Utils/
+directory) that will allow you to simulate a response pad interaction with
+RTStim.</font></li>
+
+<li>
+<font size=+1>For appropriate electrical connections between the RTStim
+machine's PCI DIO-24 port and the parallel port of the Linux machine (usually
+a laptop) running the simulation programs please refer to the file named
+"connect".</font></li>
+
+<li>
+<font size=+1>a log file utility for examining any error messages produced
+as the RTStim module is loaded (see <a href="install.htm#logtool">installation</a>).</font></li>
+</blockquote>
+</blockquote>
+
+</body>
+</html>

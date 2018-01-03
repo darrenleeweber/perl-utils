@@ -1,0 +1,13 @@
+[Settings]
+script=c:\my documents\perl\perl & cgi\security\system.cgi
+args=
+pathinfo=
+itype=0
+
+[Wizard]
+form=
+errout=
+dout=
+rout=
+parse=0
+out=0

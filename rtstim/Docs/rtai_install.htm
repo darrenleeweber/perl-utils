@@ -1,0 +1,137 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.72 [en] (X11; U; Linux 2.2.16-ert i686) [Netscape]">
+   <base target="_self">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EF" vlink="#51188E" alink="#FF0000" stylesrc="navigator.htm">
+
+<blockquote>
+<center>
+<h1>
+<font color="#FF0000"><font size=+4>RTAI Installation</font></font></h1></center>
+
+<p><br><font size=+1>The installation of RTAI requires two steps: (1) Patching
+and building a new RTHAL enabled kernel, and (2) building and installing
+the RTAI modules. Here are the steps to do this for a RTStim system. If
+you have any trouble drop us a line at the RTStim mailing list.</font>
+<br>&nbsp;</blockquote>
+<font color="#FF0000"><font size=+2>Building a RTAI RTHAL-enabled kernel</font></font>
+<blockquote><font color="#330000"><font size=+1>1.&nbsp; Download the Linux
+kernel source for the 2.4.20 kernel and download RTAI 24.1.11</font></font>
+<p><font color="#330000"><font size=+1>2. Unpack the Linux kernel source
+and RTAI source in the /usr/src directory (as root):</font></font>
+<blockquote><font color="#330000"><font size=+1>cd&nbsp; /usr/src</font></font>
+<br><font color="#330000"><font size=+1>tar --bzip2 -xvf linux-2.4.20.tar.bz2</font></font>
+<br><font color="#330000"><font size=+1>tar -xvf rtai-24.1.11.tgz</font></font></blockquote>
+<font color="#330000"><font size=+1>3. This is where you apply the RTHAL
+patch for the 2.4.20 kernel but before applying the patch lets first create
+a link and rename this linux kernel as follows (as root):</font></font>
+<blockquote><font color="#330000"><font size=+1>cd /usr/src</font></font>
+<br><font color="#330000"><font size=+1>ln -s rtai-24.1.11 rtai</font></font>
+<br><font color="#330000"><font size=+1>mv linux-2.4.20 linux-2.4.20-rtai</font></font></blockquote>
+<font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp; Then apply the patch
+named patch-2.4.20-rthal5g as follows (as root):</font></font>
+<blockquote><font color="#330000"><font size=+1>cd /usr/src/linux-2.4.20-rtai</font></font>
+<br><font color="#330000"><font size=+1>patch -p1 &lt; /usr/src/rtai/patches/patch-2.4.20-rthal5g</font></font></blockquote>
+<font color="#330000"><font size=+1>4. Now configure the kernel as follows:</font></font>
+<blockquote><font color="#330000"><font size=+1>cd /usr/src/linu-2.4.20-rtai</font></font>
+<br><font color="#330000"><font size=+1>make xconfig</font></font></blockquote>
+<font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp; Make certain that
+you choose the following options in the xconfig GUI. (Note: you may have
+to set other options specific to your hardware as well):</font></font>
+<br>&nbsp;
+<br>&nbsp;
+<blockquote><u><font color="#330000"><font size=+1>Under the "Loadable
+Module Support" section</font></font></u>
+<p><font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+disable (n) Set Version Information on All Module Symbols</font></font>
+<p><u><font color="#330000"><font size=+1>Under the "Processor Type and
+Features" section</font></font></u>
+<p><font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+enable (y) Real-Time Hardware Abstraction Layer</font></font>
+<p><u><font color="#330000"><font size=+1>Under the "General Setup" section</font></font></u>
+<p><font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; enable
+(y) ACPI support</font></font>
+<br><font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+disable (n) Advanced Power Management BIOS Support</font></font>
+<p><u><font color="#330000"><font size=+1>Under the "Parallel port support"
+section</font></font></u>
+<p><font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disable
+(n) Parallel port support</font></font>
+<p><u><font color="#330000"><font size=+1>Under the "ATA/IDE/MFM/RLL support"
+-> "IDE, ATA and ATAPI block devices" section</font></font></u><font color="#330000"><font size=+1></font></font>
+<p><font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp; disable
+(n) "Generic PCI bus-master DMA support"</font></font><font color="#330000"><font size=+1></font></font>
+<p><u><font color="#330000"><font size=+1>Under the "File systems" section</font></font></u>
+<p><font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; enable
+(y) "DOS FAT fs support"</font></font>
+<br><font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+enable (y) "MSDOS fs support"</font></font>
+<br><font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+enable (y) "VFAT fs support "</font></font>
+<br><font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+enable (y)&nbsp; "Ext3 journaling file system support"</font></font>
+<p><u><font color="#330000"><font size=+1>Under the "Sound" section</font></font></u>
+<p><font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disable
+(n) "Sound Card Support"</font></font>
+<p><u><font color="#330000"><font size=+1>Under the "Console Drivers" section</font></font></u>
+<p><font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; enable
+(y) "Video Mode Selection support"</font></font>
+<p><u><font color="#330000"><font size=+1>Under the "Console Drivers "
+-> "Frame-buffer support"section</font></font></u>
+<p><font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; enable
+(y) "Support for Frame-buffer Devices"</font></font>
+<br><font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+enable (y) "VESA VGA graphics console"</font></font>
+<br>&nbsp;</blockquote>
+<font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp; When you are done
+with the configuration click "Save and Exit".</font></font>
+<p><font color="#330000"><font size=+1>5. Compile the kernel as follows
+(as root):</font></font>
+<blockquote><font color="#330000"><font size=+1>cd /usr/src/linux-2.4.20-rtai</font></font>
+<br><font color="#330000"><font size=+1>make bzImage</font></font>
+<br><font color="#330000"><font size=+1>make modules</font></font></blockquote>
+<font color="#330000"><font size=+1>6. Assuming everything goes correctly,
+install the new kernel (as root):</font></font>
+<blockquote><font color="#330000"><font size=+1>make install</font></font></blockquote>
+<font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp; Then run "lilo".
+Remember to have a backup kernel.</font></font>
+<p><font color="#330000"><font size=+1>8. Reboot with the new kernel. The
+new kernel can be selected as the machine reboots. It will be named somthing
+like linux-2.4.20-rthal.</font></font></blockquote>
+
+<p><br><font color="#FF0000"><font size=+2>Building RTAI</font></font>
+<blockquote><font color="#330000"><font size=+1>1. Change directories to
+the RTAI source tree, and configure RTAI using:</font></font>
+<blockquote><font color="#330000"><font size=+1>make config</font></font></blockquote>
+<font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp; This will ask you
+the location of the RTHAL-enabled kernel source that you just compiled
+(/usr/src/linux-2.4.20-rtai) , and then ask a bunch of configuration questions.
+The default answers are almost always the best selection for beginning
+users. Remember you are building RTAI on a UP (uniprocessor machine).</font></font>
+<p><font color="#330000"><font size=+1>2. Compile RTAI using:</font></font>
+<blockquote><font color="#330000"><font size=+1>make</font></font></blockquote>
+<font color="#330000"><font size=+1>3. Install RTAI using (as root):</font></font>
+<blockquote><font color="#330000"><font size=+1>make install</font></font>
+<br><font color="#330000"><font size=+1>make dev</font></font></blockquote>
+<font color="#330000"><font size=+1>&nbsp;&nbsp; Please note that RTAI
+installs no files besides the modules, so uninstalling is trivial, if needed.</font></font>
+<br>&nbsp;
+<p><font color="#330000"><font size=+1>4. You'll find the requested scheduler
+in directory named "modules" with the name rtai_sched_up.o, the UP scheduler:
+You now must do:</font></font>
+<blockquote><font color="#330000"><font size=+1>./setsched up</font></font></blockquote>
+<font color="#330000"><font size=+1>&nbsp;&nbsp;&nbsp; to select the UP
+scheduler.</font></font>
+<p><font color="#330000"><font size=+1>5. Test if your installation has
+been successfull by running some/all of the examples under subdirectory
+examples. A README in each specific example directory explains it briefly.</font></font>
+<br>&nbsp;
+<p><font size=+1><font color="#FF0000">*</font><font color="#330000">Original
+document written by Lorenzo Dozio (dozio@aero.polimi.it) and David Schleef
+&lt;ds@schleef.org>. Edited by Daniel Sheltraw for use with RTStim.</font></font></blockquote>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+sub Header {
+	print "Content-type:text/html\n\n";
+	print "<HTML><HEAD><TITLE>";
+	print "$_[0]";
+	print "</TITLE></HEAD><BODY>\n";
+	}
+	
+sub Footer {
+	print "\n</BODY></HTML>";
+	}
+	1;

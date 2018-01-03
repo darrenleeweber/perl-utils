@@ -1,0 +1,17 @@
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+PATH=$PATH:$HOME/bin
+#unset USERNAME
+
+# set environment variables for RTSTIM
+STIM_RELEASE_PATH=$HOME/rtstim_release_2.0
+PATH=$PATH:$STIM_RELEASE_PATH/stim:$STIM_RELEASE_PATH/build_sequence:$STIM_RELEASE_PATH/RTCentralApp
+PKG_CONFIG_PATH=/opt/gtk/lib/pkgconfig
+export STIM_RELEASE_PATH PATH PKG_CONFIG_PATH

@@ -1,0 +1,10 @@
+<project name="ERP_region_analysis.kpf">
+<files>
+ <file url="region_peaks.pl">
+ </file>
+ <file url="region_peaks_collate.pl">
+ </file>
+ <file url="loop_region_peaks.pl">
+ </file>
+</files>
+</project>

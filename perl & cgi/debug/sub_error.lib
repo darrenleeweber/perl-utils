@@ -1,0 +1,7 @@
+sub ErrorMessage {
+	print "Content-type: text/html\n\n";
+	print "An error occurrd. <P>$_[0] \n";
+	exit;
+}
+1;
+

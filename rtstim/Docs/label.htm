@@ -1,0 +1,368 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.72 [en] (X11; U; Linux 2.2.16-ert i686) [Netscape]">
+   <base target="_self">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EF" vlink="#51188E" alink="#FF0000" stylesrc="navigator.htm">
+
+<center>
+<h1>
+<font color="#FF0000"><font size=+4>Sequence Events and Parameter Labels</font></font></h1></center>
+
+<blockquote>&nbsp;
+<br><font size=+1>The following tables will be of use to you if you plan
+to build a sequence manually (without using the Sequence Builder GUI) or
+if you need more information about the parameters associated with a specific
+event.</font>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<center><table BORDER=5 COLS=3 WIDTH="80%" NOSAVE >
+<tr>
+<td>
+<center><b><font size=+1>Event Description</font></b></center>
+</td>
+
+<td>
+<center><b><font size=+1>Event Number</font></b></center>
+</td>
+
+<td>
+<center><b><font size=+1>Event Labels</font></b></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+1>parallel port write</font></center>
+</td>
+
+<td>
+<center><font size=+1>0</font></center>
+</td>
+
+<td>
+<center><font size=+1>Event, time, pport_value</font></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+1>parallel port sync</font></center>
+</td>
+
+<td>
+<center><font size=+1>1</font></center>
+</td>
+
+<td>
+<center><font size=+1>Event, time, sync_interrupt_num, zero_clock</font></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+1>response</font></center>
+</td>
+
+<td>
+<center><font size=+1>2</font></center>
+</td>
+
+<td>
+<center><font size=+1>Event, time</font></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+1>sound (.wav) file playback</font></center>
+</td>
+
+<td>
+<center><font size=+1>3</font></center>
+</td>
+
+<td>
+<center><font size=+1>Event, time, item, start_wav</font></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+1>Image Bit Blit</font></center>
+</td>
+
+<td>
+<center><font size=+1>4</font></center>
+</td>
+
+<td>
+<center><font size=+1>Event, time, item, bit_blt_x, bit_blt_y</font></center>
+</td>
+</tr>
+
+<tr NOSAVE>
+<td>
+<center><font size=+1>speaker sound</font></center>
+</td>
+
+<td>
+<center><font size=+1>5</font></center>
+</td>
+
+<td NOSAVE>
+<center><font size=+1>Event, time, speaker_on, speaker_freq</font></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+1>vertical retrace sync</font></center>
+</td>
+
+<td>
+<center><font size=+1>7</font></center>
+</td>
+
+<td>
+<center><font size=+1>Event, time, zero_clock</font></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+1>color palette change (8-bit depth only)</font></center>
+</td>
+
+<td>
+<center><font size=+1>8</font></center>
+</td>
+
+<td>
+<center><font size=+1>Event, time, item</font></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+1>full screen image&nbsp;</font></center>
+</td>
+
+<td>
+<center><font size=+1>10</font></center>
+</td>
+
+<td>
+<center><font size=+1>Event, time, item</font></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+1>backgroung image (used with bit blit)</font></center>
+</td>
+
+<td>
+<center><font size=+1>11</font></center>
+</td>
+
+<td>
+<center><font size=+1>Event, time, item</font></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+1>stereo volume control (.wav file only)</font></center>
+</td>
+
+<td>
+<center><font size=+1>13</font></center>
+</td>
+
+<td>
+<center><font size=+1>Event, time, volume_ctrl, volume_level</font></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+1>movie playback</font></center>
+</td>
+
+<td>
+<center><font size=+1>14</font></center>
+</td>
+
+<td>
+<center><font size=+1>Event, time, start_movie, movie_rate,&nbsp; movie_start_index,
+movie_end_index</font></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+1>DIO-24 read</font></center>
+</td>
+
+<td>
+<center><font size=+1>15</font></center>
+</td>
+
+<td>
+<center><font size=+1>Event, time, port_num</font></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+1>DIO-24 write</font></center>
+</td>
+
+<td>
+<center><font size=+1>16</font></center>
+</td>
+
+<td>
+<center><font size=+1>Event, time, port_num, port_value</font></center>
+</td>
+</tr>
+</table></center>
+
+<br>&nbsp;
+<br>&nbsp;
+<center><table BORDER=5 COLS=2 WIDTH="80%" NOSAVE >
+<tr>
+<td>
+<center><b><font size=+1>Event Labels</font></b></center>
+</td>
+
+<td>
+<center><b><font size=+1>Label Description</font></b></center>
+</td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE><font size=+1>Event</font></td>
+
+<td><font size=+1>The event number given in the list above.</font></td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td ALIGN=CENTER NOSAVE><font size=+1>time</font></td>
+
+<td ALIGN=CENTER NOSAVE><font size=+1>The time of the event in milliseconds.
+The origin is set relative to the first event and any event that zeros
+the clock..</font></td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td><font size=+1>item</font></td>
+
+<td NOSAVE><font size=+1>The specific sound or image to be used. The item
+number is given by the order of the .wav or .bmp file as given in sound_list.txt
+or image_list.txt (starts at 0).&nbsp;&nbsp;</font></td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE><font size=+1>pport_value</font></td>
+
+<td><font size=+1>The value to write to the parallel port in hex.</font></td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE><font size=+1>sync_interrupt_num</font></td>
+
+<td><font size=+1>The number of sync events on the parralel port before
+resuming the scheduling of the next events.</font></td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE><font size=+1>zero_clock</font></td>
+
+<td><font size=+1>Set to 1 if you want to zero the clock.</font></td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE><font size=+1>start_wav</font></td>
+
+<td><font size=+1>Set to 1 to start the .wav file playback or 0 to stop.</font></td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE><font size=+1>bit_blitx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bit_blt_y</font></td>
+
+<td><font size=+1>Set the x (horizontal) and y (vertical) positions of
+the bit blit rectangle. The origin is the upper left corner of the screen.</font></td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE><font size=+1>speaker_on</font></td>
+
+<td><font size=+1>Set to 1 to turn sound on for a "speaker" event and 0
+to turn it off.</font></td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE><font size=+1>speaker_freq</font></td>
+
+<td><font size=+1>The speaker frequency for a "speaker" event</font></td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE><font size=+1>volume_ctrl</font></td>
+
+<td><font size=+1>Designate which stereo channel will have its volume set.</font></td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE><font size=+1>volume_level</font></td>
+
+<td><font size=+1>The&nbsp; value of volume for the channel.</font></td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE><font size=+1>start_movie</font></td>
+
+<td><font size=+1>Set to 1 to start a movie and 0 to end the movies.</font></td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE><font size=+1>movie_rate</font></td>
+
+<td><font size=+1>Set the movie rate.</font></td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE><font size=+1>movie_start_index</font></td>
+
+<td><font size=+1>Similar to item, this label gives the first frame of
+the movie as given by the order of the .bmp files in image_list.txt.</font></td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE><font size=+1>movie_end_index</font></td>
+
+<td><font size=+1>Similar to item, this label gives the last frame of the
+movie as given by the order of the .bmp files in image_list.txt.</font></td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE><font size=+1>port_num</font></td>
+
+<td><font size=+1>The port num 1 or 2 on the DIO-24 port</font></td>
+</tr>
+
+<tr ALIGN=CENTER NOSAVE>
+<td NOSAVE><font size=+1>port_value</font></td>
+
+<td><font size=+1>The value to write to the DIO-24 port.</font></td>
+</tr>
+</table></center>
+<font size=+1></font></blockquote>
+
+</body>
+</html>

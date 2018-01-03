@@ -1,0 +1,66 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.72 [en] (X11; U; Linux 2.2.16-ert i686) [Netscape]">
+   <base target="_self">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EF" vlink="#51188E" alink="#FF0000" stylesrc="navigator.htm">
+
+<blockquote>
+<center>
+<h1>
+<font color="#FF0000"><font size=+4>Notes</font></font></h1></center>
+
+<p><br>
+<ul>
+<li>
+<font size=+1>If one is collecting responses from a subject, then a file
+named response.txt will be written to the associated paradigm directory.
+This file contains the buttons pressed and the time they were pressed relative
+to the scheduling of the response event.</font></li>
+</ul>
+
+<ul>
+<li>
+<font size=+1>The utility load_rt_stim_module is used to install the module
+rt_stim.o. It needs to get the absolute path of rt_stim.o from environment
+variable STIM_RELEASE_PATH. So if this environment variable name is changed,
+the program load_rt_stim_module.c has to be changed as well.</font></li>
+</ul>
+
+<ul>
+<li>
+<font size=+1>When building a new paradigm directory, sound_list.txt file
+is a must even you will not be using sound file in your experiment. A blank
+sound_list.txt can be used in this case.</font></li>
+</ul>
+
+<ul>
+<li>
+<font size=+1>The example image files from 6.bmp to 20.bmp are just the
+repeat copies from file 1.bmp to file 5.bmp which is just an image displaying
+a number [1-5].</font></li>
+</ul>
+
+<ul>
+<li>
+<font size=+1>Example for respond.txt can refer to file paradigms/resp/respond.txt.bak
+.</font></li>
+</ul>
+
+<ul>
+<li>
+<font size=+1>image_list.txt and sound_list.txt DO NOT ALLOW the blank
+line. This will be changed later.</font></li>
+</ul>
+
+<ul>
+<li>
+<font size=+1>User has to have super user's priviledge in order to compile
+the RTStim. Because installing module need the superuser's priviledge.</font></li>
+</ul>
+</blockquote>
+
+</body>
+</html>

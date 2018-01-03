@@ -1,0 +1,115 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.72 [en] (X11; U; Linux 2.2.16-ert i686) [Netscape]">
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EF" vlink="#51188E" alink="#FF0000">
+
+<center>
+<h3>
+<b><font color="#FF0000"><font size=+4>RTStim API</font></font></b></h3></center>
+<font size=+1></font>
+<blockquote><font size=+1>The following is a detailed description of the
+API. Please see the program named mypro.c for an example of the use of
+the API in dynamic mode.</font>
+<br><font size=+1></font>&nbsp;<font size=+1></font>
+<p><b><font size=+2>stim_init</font></b>
+<blockquote><font size=+1>NAME</font>
+<br><font size=+1><b>stim_init - </b>allocates resources for<b> </b>RTStim
+API</font><font size=+1></font>
+<p><font size=+1>SYNOPSIS</font>
+<br><font size=+1>#include stim.h</font>
+<br><font size=+1>int <b>stim_init</b>(sched_struct&nbsp; *event);</font><font size=+1></font>
+<p><font size=+1>DESCRIPTION</font>
+<br><font size=+1>This function initializes the RTStim API by creating
+a shared memory region between rt_stim (kernel-space) and stim (user-space).
+It also opens fifos between these two programs. The addresses and handles
+for these resources are returned in <i>event</i>.</font><font size=+1></font>
+<p><font size=+1>RETURN VALUE</font>
+<br><font size=+1>On success 0 is returned. On failure 1 is returned.</font>
+<br>&nbsp;</blockquote>
+<b><font size=+2>stim_cleanup</font></b>
+<blockquote><font size=+1>NAME</font>
+<br><font size=+1><b>stim_cleanup -
+</b>deallocate resources for RTStim
+API</font><font size=+1></font>
+<p><font size=+1>SYNOPSIS</font>
+<br><font size=+1>#include stim.h</font>
+<br><font size=+1>int <b>stim_cleanup</b>(sched_struct&nbsp; *event);</font><font size=+1></font>
+<p><font size=+1>DESCRIPTION</font>
+<br><font size=+1>This function deallocates the shared memory regions and
+fifos which were allocated by stim_init.</font><font size=+1></font>
+<p><font size=+1>RETURN VALUE</font>
+<br><font size=+1>Always returns 0.</font></blockquote>
+
+<br>&nbsp;
+<p><b><font size=+2>sched_events</font></b>
+<blockquote><font size=+1>NAME</font>
+<br><font size=+1><b>sched_events -
+</b>schedules a number of events to
+occur</font><font size=+1></font>
+<p><font size=+1>SYNOPSIS</font>
+<br><font size=+1>#include stim.h</font>
+<br><font size=+1>int <b>sched_events</b>(sched_struct event , int start,
+int end);</font><font size=+1></font>
+<p><font size=+1>DESCRIPTION</font>
+<br><font size=+1>This function schedules events. The user-space code written
+by the user will call this function in advance of the desired scheduling
+times. Multiple events may be scheduled with one use of sched_events. The
+variables
+<i>start</i> and
+<i>end</i> refer to the first and last elements
+of the ctrl_struct which defines the type of event and its characteristics.</font><font size=+1></font>
+<p><font size=+1>RETURN VALUE</font>
+<br><font size=+1>Always returns 0.</font></blockquote>
+
+<br>&nbsp;
+<p><b><font size=+2>load_image_list</font></b>
+<blockquote><font size=+1>NAME</font>
+<br><font size=+1><b>load_image_list - </b>loads images (.bmp files)</font><font size=+1></font>
+<p><font size=+1>SYNOPSIS</font>
+<br><font size=+1>#include stim.h</font>
+<br><font size=+1>int <b>load_image_list</b>(d_struct *ds, sched_struct
+*event, int first, int last, char* dir_path);</font><font size=+1></font>
+<p><font size=+1>DESCRIPTION</font>
+<br><font size=+1>This function loads the image files (and palettes) listed
+in the file named image_list.txt. The variables <i>first</i> and <i>last</i>
+refer to image files as listed in image_list.txt. The variable <i>dir_path</i>
+is the path to the directory containing the files image_list.txt and sound_list.txt.</font><font size=+1></font>
+<p><font size=+1>RETURN VALUE</font>
+<br><font size=+1>On success 0 is returned. On failure 1 is returned.</font>
+<br>&nbsp;</blockquote>
+<b><font size=+2>load_sound_list</font></b>
+<blockquote><font size=+1>NAME</font>
+<br><font size=+1><b>load_sound_list - </b>loads sounds (.wav files)</font><font size=+1></font>
+<p><font size=+1>SYNOPSIS</font>
+<br><font size=+1>#include stim.h</font>
+<br><font size=+1>int <b>load_sound_list</b>(d_struct *ds, sched_struct
+*event, int first, int last, char * dir_path);</font><font size=+1></font>
+<p><font size=+1>DESCRIPTION</font>
+<br><font size=+1>This function loads the sound files (.wav files) listed
+in the file named sound_list.txt. The variables <i>first</i> and <i>last</i>
+refer to sound files as listed in sound_list.txt. The variable <i>dir_path</i>
+is the path to the directory containing the files image_list.txt and sound_list.txt.</font><font size=+1></font>
+<p><font size=+1>RETURN VALUE</font>
+<br><font size=+1>On success 0 is returned. On failure 1 is returned.</font>
+<br>&nbsp;
+<br>&nbsp;</blockquote>
+
+<p><br><b><font size=+2>response</font></b>
+<blockquote><font size=+1>NAME</font>
+<br><font size=+1><b>response - </b>writes collected responses to a file</font><font size=+1></font>
+<p><font size=+1>SYNOPSIS</font>
+<br><font size=+1>#include stim.h</font>
+<br><font size=+1>int <b>response</b>(sched_struct *event, char *dir_path);</font><font size=+1></font>
+<p><font size=+1>DESCRIPTION</font>
+<br><font size=+1>This function writes the collected responses to a file
+named response.txt in the stimulus directory. The variable <i>dir_path</i>
+is the path to the directory containing the files image_list.txt and sound_list.txt.</font><font size=+1></font>
+<p><font size=+1>RETURN VALUE</font>
+<br><font size=+1>Always returns 0.</font></blockquote>
+</blockquote>
+
+</body>
+</html>
